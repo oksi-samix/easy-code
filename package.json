@@ -1,0 +1,17 @@
+{
+  "name": "lesson",
+  "version": "1.0.0",
+  "description": "draft",
+  "main": "index.js",
+  "dependencies": {
+    "yahoo-weather": "^2.2.2"
+  },
+  "devDependencies": {
+    "fancy-log": "^1.3.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "OksBilokin",
+  "license": "ISC"
+}
