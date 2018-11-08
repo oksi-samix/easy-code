@@ -6,5 +6,5 @@ http.get('http://wttr.in/~kharkov', (res) => {
   res.setEncoding('utf-8');
   let result = '';
   res.on('data', data => result += data);
-  res.on('end', () => {console.log(result); fs.writeFile('weather.html', result)});
+  res.on('end', () => fs.writeFile('weather.html', result));
 });
