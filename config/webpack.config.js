@@ -10,7 +10,8 @@ let cleanOptions = {
 };
 
 let pathsToClean = [
-  'public'
+  'public',
+  'vendors~main.bundle'
 ];
 
 module.exports = {
@@ -40,7 +41,7 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
-      }
+      },
     ]
   },
 

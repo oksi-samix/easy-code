@@ -1,14 +1,6 @@
-module.exports = () => {
-  const footer =
-    document.createElement('footer');
+const builder = require('./elementBuilder');
+const content = '<p>Easycode 2019 (c)</p>';
 
-
-  footer.className = 'footer';
-
-
-  footer.innerHTML =
-    '<p>Easycode 2019 (c)</p>';
-
-  return footer;
-};
-
+module.exports = builder(
+  'footer', content, 'footer'
+);

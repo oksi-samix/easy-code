@@ -1,10 +1,9 @@
-const header = require('./scripts/header')();
-const footer = require('./scripts/footer')();
-const $ = require('jquery')();
+const header = require('./scripts/header');
+const footer = require('./scripts/footer');
+const main = require('./scripts/main');
+const $ = require('jquery');
 
-document
-  .body.appendChild(header);
-document
-  .body.appendChild(footer);
+console.log(header);
+$('body').append(header).append(main).append(footer);
 
 
