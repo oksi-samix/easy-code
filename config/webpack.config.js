@@ -1,64 +1,91 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const package = require('../package.json');
+const webpack = require('webpack');
+const argv = process.argv;
 
 let cleanOptions = {
-  root:     '/public',
-  verbose:  true,
-  dry:      false
+    root: '/public',
+    verbose: true,
+    dry: false
 };
 
 let pathsToClean = [
-  'public',
-  'vendors~main.bundle'
+    'public',
+    'vendors~main.bundle'
 ];
 
-module.exports = {
-  entry: {
-    main: './index.js'
-  },
+const isFileCss = argv.includes('--styles');
+const timestamp = Date.now();
 
-  context: path.resolve(__dirname, '../src'),
-
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, '../public')
-  },
-
-  mode: 'development',
-
-  watch: true,
-
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      },
-    ]
-  },
-
-  plugins: [
+const plugins = [
     new CleanWebpackPlugin(pathsToClean, cleanOptions),
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      title:package.name,
-      version: package.version,
-      template:'./index.html'
-    })
-  ],
+        title: package.name,
+        version: package.version,
+        template: './index.html'
+    }),
+    new MiniCssExtractPlugin({filename: 'style-' + timestamp + '.css'})
+];
 
-  optimization: {
-    splitChunks: {
-      chunks: 'all'
+if (isFileCss) {
+    plugins.push(new MiniCssExtractPlugin({filename: 'style.css'}));
+}
+
+module.exports = {
+    entry: {
+        main: './index.js'
+    },
+
+    context: path.resolve(__dirname, '../src'),
+
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, '../public')
+    },
+
+    mode: 'development',
+
+    watch: true,
+
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /(node_modules)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },
+            {
+                test: /\.s?css$/,
+                use: [isFileCss ? MiniCssExtractPlugin.loader : 'style-loader',
+                    {loader: "css-loader"},
+                    {loader: "sass-loader"}
+                ]
+           }
+        ]
+    },
+
+    plugins,
+
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    },
+
+    devServer: {
+        contentBase: path.resolve(__dirname, '../public'),
+        publicPath: '/',
+        port: 3001
     }
-  },
 
 };
 

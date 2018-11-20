@@ -1,7 +1,6 @@
-const $ = require('jquery');
+import $ from 'jquery';
 
-module.exports =
-  (tag = 'div', content = '', className = 'box') => {
-    console.log($().addClass(className).html(content));
+export default (tag = 'div', content = '', className = 'box') => {
     return $(`<${tag}/>`).addClass(className).html(content);
   };
+
