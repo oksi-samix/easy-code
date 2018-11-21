@@ -20,6 +20,10 @@ let pathsToClean = [
 const isFileCss = argv.includes('--styles');
 const timestamp = Date.now();
 
+const isHash = true;
+
+let cssFileName = isHash ? '[name]-[hash].css' : `style-${timestamp}.css`;
+
 const plugins = [
     new CleanWebpackPlugin(pathsToClean, cleanOptions),
     new webpack.HotModuleReplacementPlugin(),
@@ -28,12 +32,8 @@ const plugins = [
         version: package.version,
         template: './index.html'
     }),
-    new MiniCssExtractPlugin({filename: 'style-' + timestamp + '.css'})
+    new MiniCssExtractPlugin({filename: cssFileName})
 ];
-
-if (isFileCss) {
-    plugins.push(new MiniCssExtractPlugin({filename: 'style.css'}));
-}
 
 module.exports = {
     entry: {
@@ -65,7 +65,7 @@ module.exports = {
             },
             {
                 test: /\.s?css$/,
-                use: [isFileCss ? MiniCssExtractPlugin.loader : 'style-loader',
+                use: [MiniCssExtractPlugin.loader,
                     {loader: "css-loader"},
                     {loader: "sass-loader"}
                 ]
