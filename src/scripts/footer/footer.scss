@@ -1,0 +1,10 @@
+@import '../../styles/mixins.scss';
+
+div{
+  @include round(25px);
+  border: 1px solid red;
+}
+
+.triangle{
+  @include triangle(25px, 'right')
+}
