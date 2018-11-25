@@ -85,7 +85,9 @@ module.exports = {
         contentBase: path.resolve(__dirname, '../public'),
         publicPath: '/',
         port: 3001
-    }
+    },
+
+    devtool: "inline-source-map"
 
 };
 
