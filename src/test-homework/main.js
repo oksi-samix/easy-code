@@ -11,15 +11,13 @@ export const getDay = () => {
 export const getAdultUsers = (users = []) => users.filter(user => user.age > 18);
 getAdultUsers(users);
 
-export const getRandomUsers = (users, numb, middleUser) => {
-	console.log('111', users, numb, middleUser);
-	// const numb = Math.random();
+export const getRandomUsers = (users) => {
+	const numb = Math.random();
 	if (!users) {
 		return false;
 	}
-	
-	// const length = users.length;
-	// const middleUser = Math.round(length / 2);
+    const length = users.length;
+	const middleUser = Math.round(length / 2);
 	
 	if (numb > 0.5) {
 		return users.slice(0, middleUser);
