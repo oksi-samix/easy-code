@@ -3,6 +3,6 @@ import './navigation.scss';
 
 export const Navigation = () => (
     <nav className="main-nav">
-       navigation
+       This is navigation
     </nav>
 );
