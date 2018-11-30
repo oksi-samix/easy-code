@@ -13,11 +13,18 @@
     "@babel/preset-env": "^7.1.5",
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^1.0.0",
     "css-loader": "^1.0.1",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
     "expose-loader": "^0.7.5",
     "fancy-log": "^1.3.2",
     "html-webpack-plugin": "^3.2.0",
@@ -42,7 +49,8 @@
     "test": "npx karma start karma.conf.js",
     "start": "npx webpack --watch --config=./config/webpack.config.js",
     "start:styles": "npx webpack --watch --styles --config=./config/webpack.config.js",
-    "server": "npx webpack-dev-server --config=./config/webpack.config.js --open"
+    "server": "npx webpack-dev-server --config=./config/webpack.config.js --open",
+    "lint": "npx eslint src/**/*.js"
   },
   "author": "OksBilokin",
   "license": "ISC"
