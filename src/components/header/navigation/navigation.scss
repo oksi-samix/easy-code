@@ -1,0 +1,8 @@
+@import "../../../styles/variables";
+
+.main-nav{
+  margin: 0 auto 0 $generalPadding;
+  background: green;
+  text-align: right;
+  flex: 1;
+}

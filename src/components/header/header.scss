@@ -1,0 +1,8 @@
+@import "../../styles/variables";
+
+.header{
+  border:1px solid green;
+  display: flex;
+  padding: $generalPadding;
+  align-items: center;
+}
