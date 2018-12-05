@@ -1,8 +1,8 @@
-import {Navigation} from './navigation';
+import { Navigation } from './navigation';
 import './header.scss';
 
 export const Header = () => (
-    <header className="header">
-        <p>HEADER</p>
-        <Navigation/>
-    </header>);
+  <header className="header">
+    <p>HEADER</p>
+    <Navigation list={['Home', 'Products', 'Contacts']} />
+  </header>);

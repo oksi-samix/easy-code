@@ -5,6 +5,7 @@
   },
   "globals" : {
     "React": true,
+    "COmponent": true,
     "PropTypes": true
   },
   "rules": {
