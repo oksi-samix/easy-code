@@ -7,14 +7,14 @@ const webpack = require('webpack');
 const argv = process.argv;
 
 let cleanOptions = {
-    root: '/public',
-    verbose: true,
-    dry: false
+  root: '/public',
+  verbose: true,
+  dry: false
 };
 
 let pathsToClean = [
-    'public',
-    'vendors~main.bundle'
+  'public',
+  'vendors~main.bundle'
 ];
 
 const isFileCss = argv.includes('--styles');
@@ -25,69 +25,80 @@ const isHash = true;
 let cssFileName = isHash ? '[name]-[hash].css' : `style-${timestamp}.css`;
 
 const plugins = [
-    new CleanWebpackPlugin(pathsToClean, cleanOptions),
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-        title: package.name,
-        version: package.version,
-        template: './index.html'
-    }),
-    new MiniCssExtractPlugin({filename: cssFileName})
+  new CleanWebpackPlugin(pathsToClean, cleanOptions),
+  new webpack.HotModuleReplacementPlugin(),
+  new HtmlWebpackPlugin({
+    title: package.name,
+    version: package.version,
+    template: './index.html'
+  }),
+  new MiniCssExtractPlugin({filename: cssFileName}),
+  new webpack.ProvidePlugin({
+    React: 'react',
+    Component: ['react', 'Component']
+  })
 ];
 
 module.exports = {
-    entry: {
-        main: './index.js'
-    },
+  entry: {
+    main: './app.js'
+  },
 
-    context: path.resolve(__dirname, '../src'),
+  context: path.resolve(__dirname, '../src'),
 
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, '../public')
-    },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, '../public')
+  },
 
-    mode: 'development',
+  mode: 'development',
 
-    watch: true,
+  watch: true,
 
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /(node_modules)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
-                }
-            },
-            {
-                test: /\.s?css$/,
-                use: [MiniCssExtractPlugin.loader,
-                    {loader: "css-loader"},
-                    {loader: "sass-loader"}
-                ]
-           }
-        ]
-    },
+  module: {
+    rules: [
+      // {
+      //   enforce: 'pre',
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: 'eslint-loader',
+      // },
 
-    plugins,
-
-    optimization: {
-        splitChunks: {
-            chunks: 'all'
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', "@babel/preset-react"]
+          }
         }
-    },
+      },
+      {
+        test: /\.s?css$/,
+        use: [MiniCssExtractPlugin.loader,
+          {loader: "css-loader"},
+          {loader: "sass-loader"}
+        ]
+      }
+    ]
+  },
 
-    devServer: {
-        contentBase: path.resolve(__dirname, '../public'),
-        publicPath: '/',
-        port: 3001
-    },
+  plugins,
 
-    devtool: "inline-source-map"
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
+
+  devServer: {
+    contentBase: path.resolve(__dirname, '../public'),
+    publicPath: '/',
+    port: 3001
+  },
+
+  devtool: "inline-source-map"
 
 };
 
