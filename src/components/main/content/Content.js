@@ -6,7 +6,7 @@ import { ListName } from '../listName';
 const users = [
   { firstName: 'Olya', lastName: 'Voronaya', age: 23 },
   { firstName: 'Angelina', lastName: 'Vovk', age: 48 },
-  { firstName: 'Ivan', lastName: 'Dorn', age: 33 },
+  { firstName: 'Ivan', lastName: 'Dorn', age: 35 },
 ];
 
 export const Content = () => (

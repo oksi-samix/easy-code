@@ -25,7 +25,7 @@ const isHash = true;
 let cssFileName = isHash ? '[name]-[hash].css' : `style-${timestamp}.css`;
 
 const plugins = [
-  new CleanWebpackPlugin(pathsToClean, cleanOptions),
+  // new CleanWebpackPlugin(pathsToClean, cleanOptions),
   new webpack.HotModuleReplacementPlugin(),
   new HtmlWebpackPlugin({
     title: package.name,
@@ -57,20 +57,14 @@ module.exports = {
 
   module: {
     rules: [
-      // {
-      //   enforce: 'pre',
-      //   test: /\.js$/,
-      //   exclude: /node_modules/,
-      //   loader: 'eslint-loader',
-      // },
-
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', "@babel/preset-react"]
+            presets: ['@babel/preset-env', "@babel/preset-react"],
+            plugins: ['@babel/plugin-proposal-class-properties']
           }
         }
       },
