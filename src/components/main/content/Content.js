@@ -1,17 +1,24 @@
 import './content.scss';
-import { Greetting } from '../greetting';
-import { Numbers } from '../numbers';
-import { ListName } from '../listName';
+import Paragraph from '../paragraph/Paragraph';
+import Users from '../users/Users';
+import Date from '../date/Date';
+import ColorComponent from '../colorComponent/ColorComponent';
 
-const users = [
-  { firstName: 'Olya', lastName: 'Voronaya', age: 23 },
-  { firstName: 'Angelina', lastName: 'Vovk', age: 48 },
-  { firstName: 'Ivan', lastName: 'Dorn', age: 35 },
-];
+const text = `
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Morbi sit amet augue libero. Vivamus nulla tortor, rhoncus
+at nisl ut, auctor suscipit nisl. Pellentesque habitant 
+morbi tristique senectus et netus et malesuada fames ac 
+turpis egestas. Duis venenatis erat vitae eros rhoncus maximus.
+Proin vel massa urna. Phasellus blandit massa et erat suscipit, quis imperdiet 
+erat ornare. Fusce faucibus lacus sapien, feugiat porttitor odio finibus ut. 
+Maecenas id faucibus tellus, at fermentum est.
+`;
 
 export const Content = () => (
   <section className="content">
-    <Greetting name="Oksana" />
-    <Numbers from={2} to={7} />
-    <ListName users={users} />
+    <Paragraph text={text} />
+    <Users />
+    {/*<Date />*/}
+    <ColorComponent />
   </section>);
