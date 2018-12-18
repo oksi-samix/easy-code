@@ -2,7 +2,7 @@ import './content.scss';
 import {Greetting} from '../greetting';
 import {Numbers} from '../numbers';
 import {ListName} from '../listName';
-import Form from "../Form";
+import Form from "../../form/Form";
 
 const users = [
   {firstName: 'Olya', lastName: 'Voronaya', age: 23},
