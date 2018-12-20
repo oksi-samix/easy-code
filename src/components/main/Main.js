@@ -1,6 +1,9 @@
 import {checkUser} from '../../services';
 import Login from '../../pages/login';
 import './main.scss';
+import CustomeInput from '../customeInput/CustomeInput';
+
+const fn = text => console.log(text);
 
 class Main extends Component {
   state = {user: null, loading: true};
@@ -26,11 +29,14 @@ class Main extends Component {
     </>
   }
 
+
   render() {
     const {loading} = this.state;
     return (
       <main className="main">
         {loading ? 'LOADING' : this.renderContent()}
+
+        <CustomeInput onLoose={fn}/>
       </main>
     )
   }
