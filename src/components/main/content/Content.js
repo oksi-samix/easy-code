@@ -19,6 +19,6 @@ export const Content = () => (
   <section className="content">
     <Paragraph text={text} />
     <Users />
-    {/*<Date />*/}
+    <Date />
     <ColorComponent />
   </section>);

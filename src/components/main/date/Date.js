@@ -1,11 +1,15 @@
 import React from 'react';
 
-export default class Date extends Component {
-  state = { time: new Date() };
+export default class CustomDate extends Component {
+  state = { time: null };
 
   componentDidMount() {
-    const date = new Date();
-    this.interval = setInterval(() => this.setState({ time: date }), 1000);
+    this.interval = setInterval(() => {
+      const date = new Date();
+      const time = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}
+          ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+      this.setState({ time });
+    }, 1000);
   }
 
   componentWillUnmount() {
@@ -14,11 +18,11 @@ export default class Date extends Component {
 
   render() {
     const { time } = this.state;
-    console.log(time);
     return (
       <div>
         Hello!
-        {/*{ time }*/}
+        <br/>
+        {time}
       </div>
 
     );
