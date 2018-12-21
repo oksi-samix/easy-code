@@ -2,36 +2,22 @@ import {checkUser} from '../../services';
 import Login from '../../pages/login';
 import './main.scss';
 import CustomeInput from '../customeInput/CustomeInput';
+import Home from '../../pages/home';
 
 const fn = text => console.log(text);
 
 class Main extends Component {
-  state = {user: null, loading: true};
-
-  componentDidMount() {
-    checkUser()
-      .then((data) => this.setState({user: data, loading: false}))
-      .catch(() => this.setState({loading: false}))
-
-  }
-
-  onLogin = (user) => {
-    this.setState({
-      user
-    });
-  };
 
   renderContent() {
-    const {user} = this.state;
+    const {user, info} = this.props;
     return <>
-      <h1>{user ? `Hello, ${user.firstName}` : 'Login'}</h1>
-      {!user ? <Login onLogin={this.onLogin}/> : 'hello'}
+      {user ? <Home user={user} info={info} /> : <Login onLogin={this.props.onLogin}/>}
     </>
   }
 
 
   render() {
-    const {loading} = this.state;
+    const {loading} = this.props;
     return (
       <main className="main">
         {loading ? 'LOADING' : this.renderContent()}
