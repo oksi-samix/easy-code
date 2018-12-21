@@ -14,7 +14,7 @@ export default class Paragraph extends Component {
     return (
       <div>
         <button onClick={handleClick}>Show text</button>
-        {show ? <p>{text}</p> : null}
+        {show && <p>{text}</p>}
       </div>
 
     );

@@ -5,15 +5,9 @@ export default class Button extends Component {
 
   setButtonState = () => {
     const { className } = this.state;
-    if (className === 'inactive') {
-      this.setState({
-        className: 'active'
-      });
-    } else {
-      this.setState({
-        className: 'inactive'
-      });
-    }
+    this.setState({
+      className: className === 'inactive' ? 'active' : 'inactive'
+    });
   };
 
   render() {
