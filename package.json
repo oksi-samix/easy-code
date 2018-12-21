@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
     "@babel/preset-env": "^7.1.5",
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^6.26.3",
