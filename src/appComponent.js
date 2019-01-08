@@ -2,6 +2,7 @@ import {Header} from './components/header';
 import Main from './components/main';
 import {Footer} from './components/footer';
 import {checkUser, getInfo} from './services';
+import {Pages} from "./pages/Pages";
 
 class AppComponent extends Component {
   state = {info: null, user: null, loading: true};
@@ -29,7 +30,9 @@ class AppComponent extends Component {
     return (
       <>
         <Header user={user} info={info}/>
-        <Main user={user} info={info} loading={loading} onLogin={this.onLogin}/>
+        <Main user={user} info={info} loading={loading} onLogin={this.onLogin}>
+          <Pages/>
+        </Main>
         <Footer/>
       </>
     )

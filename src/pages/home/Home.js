@@ -20,14 +20,12 @@ class Home extends Component {
             <p>You have <b>{info.categories}</b> categories (<b>{info.publishedCategories}</b> published)</p>
             <p>You have <b>{info.products}</b> products</p>
           </div>
-
         }
+        This is home page
       </article>
 
     )
   }
 
 }
-
-Hom
 export default Home

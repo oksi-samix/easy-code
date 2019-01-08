@@ -79,7 +79,7 @@ export default class Form extends Component {
             <li key={index}>
               <input type={field.secure ? 'password' : 'text'}
                      name={field.label}
-                     palaceholder={field.placeholder}
+                     placeholder={field.placeholder}
                      value={this.state[field.label].value}
                      onChange={this.handelChange}
                      onBlur={this.validate}

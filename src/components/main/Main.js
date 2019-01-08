@@ -20,9 +20,11 @@ class Main extends Component {
     const {loading} = this.props;
     return (
       <main className="main">
-        {loading ? 'LOADING' : this.renderContent()}
+        {/*{loading ? 'LOADING' : this.renderContent()}*/}
 
-        <CustomeInput onLoose={fn}/>
+        {/*<CustomeInput onLoose={fn}/>*/}
+
+        {this.props.children}
       </main>
     )
   }

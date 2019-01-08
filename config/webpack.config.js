@@ -48,7 +48,8 @@ module.exports = {
 
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, '../public')
+    path: path.resolve(__dirname, '../public'),
+    publicPath: '/'
   },
 
   mode: 'development',
@@ -89,7 +90,9 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, '../public'),
     publicPath: '/',
-    port: 3000
+    port: 3000,
+    hot: true,
+    historyApiFallback: true
   },
 
   devtool: "inline-source-map"
