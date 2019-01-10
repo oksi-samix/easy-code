@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import Loader from '../../components/common/Loader'
 
 class Home extends Component {
 
@@ -22,6 +23,7 @@ class Home extends Component {
           </div>
         }
         This is home page
+        <Loader show />
       </article>
 
     )
