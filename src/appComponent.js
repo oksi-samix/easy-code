@@ -1,21 +1,29 @@
-import {Header} from './components/header';
+import { Header } from './components/header';
 import Main from './components/main';
-import {Footer} from './components/footer';
-import {checkUser, getInfo} from './services';
-import {Pages} from "./pages/Pages";
+import { Footer } from './components/footer';
+import { checkUser, getInfo } from './services';
+import { Pages } from './pages/Pages';
 
 class AppComponent extends Component {
-  state = {info: null, user: null, loading: true};
+  state = {
+    info: null,
+    user: null,
+    loading: true
+  };
 
   componentDidMount() {
     checkUser()
-      .then((data) => this.setState({user: data, loading: false}))
-      .catch(() => this.setState({loading: false}))
+      .then((data) => this.setState({
+        user: data,
+        loading: false
+      }))
+      .catch(() => this.setState({ loading: false }));
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (!prevState.user && this.state.user) {
-      getInfo().then((info) => this.setState({info}));
+      getInfo()
+        .then((info) => this.setState({ info }));
     }
   }
 
@@ -26,7 +34,7 @@ class AppComponent extends Component {
   };
 
   render() {
-    const {user, info, loading} = this.state;
+    const { user, info, loading } = this.state;
     return (
       <>
         <Header user={user} info={info}/>
@@ -35,8 +43,8 @@ class AppComponent extends Component {
         </Main>
         <Footer/>
       </>
-    )
+    );
   }
 }
 
-export default AppComponent
+export default AppComponent;
