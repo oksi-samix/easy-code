@@ -1,35 +1,55 @@
+import React, {Component} from 'react';
+// import './customeInput.scss'
+
 class CustomeInput extends Component {
   state = {
     hidden: false,
-    value: 'bla'
   };
 
-  changeVal = ({ target: { value } }) => {
-    this.setState({
-      value
-    });
+  changeVal = ({target: {value, name}}) => {
+    this.props.changeVal(value, name)
   };
 
-  handleBlur = ({ target: { value } }) => {
-    this.setState({ hidden: false });
-    this.props.onLoose(value);
+  handleBlur = ({target: {value, name}}) => {
+    this.setState({hidden: false});
+    //this.props.onLoose(value, name);
   };
 
   handleClick = (e) => {
-    this.setState({ hidden: true });
+    this.setState({hidden: true});
   };
 
-  render() {
-    const { hidden, value } = this.state;
+  renderInput = () => {
+    const {value, name, textarea} = this.props;
     return (
-      <div>
-        {!hidden ? <span onClick={this.handleClick}>{value}</span> :
+      <>{
+        textarea ? <textarea
+            className="textarea"
+            name={name}
+            type="text"
+            value={value}
+            onChange={this.changeVal}
+            onBlur={this.handleBlur}/>
+          :
           <input
+            name={name}
             type="text"
             value={value}
             onChange={this.changeVal}
             onBlur={this.handleBlur}
-          />}
+          />
+      }</>
+
+    )
+  }
+
+  render() {
+    const {hidden} = this.state;
+    const {value} = this.props;
+    return (
+      <div>
+        {!hidden ? <span onClick={this.handleClick}>{value}</span> :
+          this.renderInput()}
       </div>
     );
   }

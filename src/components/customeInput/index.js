@@ -1,1 +1,1 @@
-export * from './CustomeInput';
+export {default} from './CustomeInput';

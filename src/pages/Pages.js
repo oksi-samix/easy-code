@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import Home from './home';
 import Login from './login';
 import CreateUser from './createUser';
@@ -7,32 +7,58 @@ import Start from './start';
 import Categories from './categories';
 import Category from './category';
 import Products from './products';
-import Product from './product';
+import ProductPage from './productPage';
 import UpdateUser from './updateUser';
 
-export const Pages = () => <Switch>
-  <Route
-    path="/"
-    exact
-    component={Login}
-  />
-  <Route
-    path="/user"
-    exact
-    component={CreateUser}
-  />
-  <Route
-    path="/home"
-    component={Home}
-  />
-  <Route
-    path="/success"
-    component={Success}
-  />
-  <Route
-    path="/start"
-    component={Start}
-  />
+export const Pages = ({user, onLogin, info}) => <Switch>
+  {user ? [
+    <Route
+      path="/user"
+      exact
+      component={CreateUser}
+      key="user"
+    />,
+    <Route
+      path="/home"
+      render={() => <Home info={info} user={user}/>}
+      key="home"
+    />,
+    <Route
+      path="/start"
+      component={Start}
+      key="start"
+    />,
+    <Route
+      path="/products"
+      key="product"
+      component={Products}
+    />,
+    <Route
+      path="/update"
+      key="update"
+      component={UpdateUser}
+    />,
+    <Redirect key="redirect" from="/login" to="/home"/>
+  ] : [
+    <Route
+      path="/login"
+      exact
+      key="login"
+      render={() => <Login onLogin={onLogin}/>}
+    />,
+    <Route
+      path="/"
+      exact
+      key="loginEmpty"
+      render={() => <Login onLogin={onLogin}/>}
+    />,
+    <Route
+      path="/success"
+      key="success"
+      component={Success}
+    />
+  ]}
+
   <Route
     path="/category"
     component={Category}
@@ -42,16 +68,8 @@ export const Pages = () => <Switch>
     component={Categories}
   />
   <Route
-    path="/products"
-    component={Products}
-  />
-  <Route
-    path="/product"
-    component={Product}
-  />
-  <Route
-    path="/update"
-    component={UpdateUser}
+    path="/product/:id"
+    component={ProductPage}
   />
   <Route
     render={(props) => <div>Not found <em>{props.location.pathname}</em></div>}

@@ -10,3 +10,12 @@
 .active{
   background: red;
 }
+
+.logout{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  a{
+    margin-left: auto;
+  }
+}
