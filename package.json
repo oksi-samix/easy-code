@@ -4,15 +4,20 @@
   "description": "draft",
   "main": "src/index.js",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "chai": "^4.2.0",
     "react": "^16.6.3",
     "react-dom": "16.6.3",
+    "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-saga": "^0.16.2"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
     "@babel/plugin-proposal-class-properties": "^7.2.1",
+    "@babel/plugin-transform-regenerator": "^7.0.0",
     "@babel/preset-env": "^7.1.5",
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^6.26.3",

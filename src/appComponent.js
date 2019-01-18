@@ -1,7 +1,7 @@
 import {Redirect, withRouter } from 'react-router-dom';
 // import { withRouter} from 'react-router';
-import {Header} from 'components/header';
-import Main from 'components/main';
+import {Header} from './components/header';
+import Main from './components/main';
 import {Footer} from './components/footer';
 import {checkUser, getInfo} from './services';
 import {Pages} from './pages/Pages';
