@@ -7,9 +7,12 @@ import {
 import createSagaMiddleware from 'redux-saga';
 import {rootSaga} from "./rootSaga";
 import { user } from './user';
+import { info, category } from './categories';
 
 const rootReducers = combineReducers({
-  user
+  user,
+  info,
+  category
 });
 
 // eslint-disable-next-line

@@ -5,10 +5,7 @@ import {logout} from "../../services";
 export const Header = ({user = {}, info = {}, onLogout, history}) => {
   const onLogOutHandler = (event) => {
     event.preventDefault();
-    logout().then(() => {
-      onLogout();
-       history.push('/')
-    })
+    onLogout();
   };
   return (<header className="header">
     {user ? <p>{user.firstName}</p> : <div>

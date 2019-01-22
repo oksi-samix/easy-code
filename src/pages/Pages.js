@@ -13,12 +13,6 @@ import UpdateUser from './updateUser';
 export const Pages = ({user, onLogin, info}) => <Switch>
   {user ? [
     <Route
-      path="/user"
-      exact
-      component={CreateUser}
-      key="user"
-    />,
-    <Route
       path="/home"
       render={() => <Home info={info} user={user}/>}
       key="home"
@@ -38,19 +32,13 @@ export const Pages = ({user, onLogin, info}) => <Switch>
       key="update"
       component={UpdateUser}
     />,
-    <Redirect key="redirect" from="/login" to="/home"/>
+    <Redirect key="redirect" from="/" to="/home"/>
   ] : [
-    <Route
-      path="/login"
-      exact
-      key="login"
-      render={() => <Login onLogin={onLogin}/>}
-    />,
     <Route
       path="/"
       exact
       key="loginEmpty"
-      render={() => <Login onLogin={onLogin}/>}
+      component={Login}
     />,
     <Route
       path="/success"
@@ -58,7 +46,12 @@ export const Pages = ({user, onLogin, info}) => <Switch>
       component={Success}
     />
   ]}
-
+  <Route
+    path="/user"
+    exact
+    component={CreateUser}
+    key="user"
+  />,
   <Route
     path="/category"
     component={Category}

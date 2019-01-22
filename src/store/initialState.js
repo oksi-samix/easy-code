@@ -1,5 +1,7 @@
 export default {
   user: null,
   products: [],
-  product: null
+  product: null,
+  category: null,
+  info: null
 }
