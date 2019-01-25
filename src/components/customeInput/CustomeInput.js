@@ -12,7 +12,7 @@ class CustomeInput extends Component {
 
   handleBlur = ({target: {value, name}}) => {
     this.setState({hidden: false});
-    //this.props.onLoose(value, name);
+    this.props.onLoose(value, name);
   };
 
   handleClick = (e) => {

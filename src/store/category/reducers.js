@@ -4,25 +4,22 @@ import {
   CLEAR_CATEGORY,
   SET_CATEGORY,
 } from './actions';
-import {
-  category as categoryInitial,
-  info as infoInitial
-} from '../initialState';
+import initialState from '../initialState';
 
-export const info = (state = infoInitial, action) => {
+export const info = (state = initialState.info, action) => {
   switch (action.type) {
     case SET_INFO: {
       return action.data;
     }
     case CLEAN_INFO: {
-      return infoInitial;
+      return initialState.info;
     }
   }
 
   return state;
 };
 
-export const category = (state = categoryInitial, action) => {
+export const category = (state = initialState.categories, action) => {
   switch (action.type) {
     case SET_CATEGORY: {
       return action.data;

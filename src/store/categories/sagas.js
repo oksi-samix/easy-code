@@ -4,9 +4,9 @@ import {
   all
 } from 'redux-saga/effects';
 
-import { getCategories as getList } from 'services';
+import { getCategories as getList, updateCategory as updateCat} from '../../services';
 
-import { updateCategory } from 'store/category';
+import { updateCategory } from '../category';
 
 import {
   UPDATE_CATEGORIES,
@@ -20,7 +20,7 @@ function* fetchCategories() {
 }
 
 function* putCategory({ data }) {
-  const category = yield updateCategory(data);
+  const category = yield updateCat(data);
   yield put(updateCategory(category));
   yield put(getList());
 }

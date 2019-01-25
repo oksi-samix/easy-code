@@ -2,15 +2,15 @@ import {
   SET_CATEGORIES,
   CLEAR_CATEGORIES,
 } from './actions';
-import { categories as initial } from '../initialState';
+import initialState from '../initialState';
 
-export const categories = (state = initial, action) => {
+export const categories = (state = initialState.categories, action) => {
   switch (action.type) {
     case SET_CATEGORIES: {
       return action.data;
     }
     case CLEAR_CATEGORIES: {
-      return initial;
+      return initialState.categories;
     }
   }
 

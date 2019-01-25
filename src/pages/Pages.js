@@ -32,7 +32,7 @@ export const Pages = ({user, onLogin, info}) => <Switch>
       key="update"
       component={UpdateUser}
     />,
-    <Redirect key="redirect" from="/" to="/home"/>
+    <Redirect exact key="redirect" from="/" to="/home" />
   ] : [
     <Route
       path="/"

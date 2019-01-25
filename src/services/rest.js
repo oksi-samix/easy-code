@@ -1,3 +1,7 @@
+import { store } from '../store';
+
+import { setError } from '../store/status'
+
 const baseUrl = 'http://localhost:8086/';
 
 const request = (url, options = {}, data) => {
@@ -11,7 +15,7 @@ const request = (url, options = {}, data) => {
     };
     settings.body = JSON.stringify(data);
   }
-  return fetch(`${baseUrl}${url}`, settings)
+  const req =  fetch(`${baseUrl}${url}`, settings)
     .then(data => data.json())
     .then((data) => {
       if(data.error){
@@ -19,6 +23,10 @@ const request = (url, options = {}, data) => {
       }
       return data;
     })
+
+  req.catch(err => !url.includes('checkUser') &&  store.dispatch(setError(err)));
+
+  return req;
 };
 
 const rest = {

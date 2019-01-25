@@ -4,7 +4,7 @@ import {
   all
 } from 'redux-saga/effects';
 
-import { getProducts as getList } from 'services';
+import { getProducts as getList } from '../../services';
 
 import {
   GET_PRODUCTS,

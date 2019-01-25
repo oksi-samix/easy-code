@@ -5,7 +5,6 @@ class ProductPage extends Component {
   state = {product: {}};
 
   componentDidMount() {
-    console.log(this.props.match.params.id);
     getProducts(this.props.match.params.id).then(data => this.setState({product: data}))
   }
 

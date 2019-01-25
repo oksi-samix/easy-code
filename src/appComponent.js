@@ -4,21 +4,15 @@ import {Header} from './components/header';
 import Main from './components/main';
 import {Footer} from './components/footer';
 import {check, logout} from './store/user';
-import {getInfo, cleanInfo} from './store/categories';
+import {getInfo, cleanInfo} from './store/category';
+import {cleanError} from './store/status';
 import {Pages} from './pages/Pages';
 import {connect} from 'react-redux';
+import {ToastContainer} from 'react-toastr';
 
 
 class AppComponent extends Component {
-  state = {
-    info: null,
-    loading: true
-  };
-
   componentDidMount() {
-    /* checkUser()
-      .then(user => this.setState({ loading: false, user }))
-      .catch(() => this.setState({ loading: false })); */
     this.props.dispatch(check());
   }
 
@@ -30,6 +24,11 @@ class AppComponent extends Component {
       this.props.history.push('/');
       this.props.dispatch(cleanInfo())
     }
+
+    if (!prevProps.error && this.props.error){
+      this.container.error(this.props.error, 'Error title');
+      this.props.dispatch(cleanError());
+    }
   }
 
   onLogout = () => {
@@ -38,6 +37,7 @@ class AppComponent extends Component {
 
   render() {
     const {user, info} = this.props;
+
     return (
       <>
         <Header
@@ -49,11 +49,15 @@ class AppComponent extends Component {
         <Main>
           <Pages user={this.props.user} info={info}/>
         </Main>
+
+        <ToastContainer
+          ref={el => this.container = el}
+          className="toast-top-right" />
       </>
     );
   }
 }
 
-const mapState = state => ({user: state.user, info: state.info});
+const mapState = state => ({user: state.user, info: state.info, error: state.error});
 
 export default withRouter(connect(mapState)(AppComponent));

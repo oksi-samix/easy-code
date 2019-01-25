@@ -1,5 +1,10 @@
-import {rest} from './rest';
+import { rest } from './rest';
 
-const getProducts = (id) => rest.get(`public/products/${id}`);
+const getProduct = id => rest.get(`public/products/${id}`);
 
-export {getProducts};
+const getProducts = () => rest.get('public/products');
+
+export {
+  getProduct,
+  getProducts,
+};
