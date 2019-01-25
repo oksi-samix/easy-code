@@ -1,14 +1,11 @@
-export const GET_INFO = "get info";
-export const getInfo = () => ({type: GET_INFO});
+export const GET_CATEGORIES = 'Get all categories';
+export const getCategories = () => ({ type: GET_CATEGORIES });
 
-export const SET_INFO = "set info";
-export const setInfo = (data) => ({type: SET_INFO, data});
+export const UPDATE_CATEGORIES = 'Request to update category';
+export const updateCategories = data => ({ type: UPDATE_CATEGORIES, data });
 
+export const SET_CATEGORIES = 'Set categories';
+export const setCatigories = data => ({ type: SET_CATEGORIES, data });
 
-export const CLEAN_INFO = "clean info";
-export const cleanInfo = () => ({type: CLEAN_INFO});
-
-
-export const SET_CATEGORY = "set category";
-export const setCategory = () => ({type: SET_CATEGORY});
-
+export const CLEAR_CATEGORIES = 'Clear category';
+export const clearCategories = () => ({ type: CLEAR_CATEGORIES });

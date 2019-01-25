@@ -5,14 +5,18 @@ import {
   compose,
 } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import {rootSaga} from "./rootSaga";
+import { rootSaga } from './rootSaga';
 import { user } from './user';
-import { info, category } from './categories';
+import { info, category } from './category';
+import { categories } from './categories';
+import { products } from './products';
 
 const rootReducers = combineReducers({
   user,
   info,
-  category
+  category,
+  categories,
+  products,
 });
 
 // eslint-disable-next-line
