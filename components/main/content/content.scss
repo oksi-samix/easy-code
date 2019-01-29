@@ -1,0 +1,8 @@
+@import "../../../styles/variables";
+
+.content{
+  background: aliceblue;
+  flex: 1;
+  margin-left: $generalPadding;
+  padding: $generalPadding;
+}

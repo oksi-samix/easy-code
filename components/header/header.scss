@@ -1,0 +1,21 @@
+@import "../../styles/variables";
+
+.header{
+  border:1px solid green;
+  display: flex;
+  padding: $generalPadding;
+  align-items: center;
+}
+
+.active{
+  background: red;
+}
+
+.logout{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  a{
+    margin-left: auto;
+  }
+}
