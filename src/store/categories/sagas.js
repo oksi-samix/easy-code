@@ -4,25 +4,35 @@ import {
   all
 } from 'redux-saga/effects';
 
-import { getCategories as getList, updateCategory as updateCat} from '../../services';
+import {getCategories as getList, updateCategory as updateCat} from '../../services';
 
-import { updateCategory } from '../category';
+import {updateCategory} from '../category';
 
 import {
-  UPDATE_CATEGORIES,
   GET_CATEGORIES,
+  UPDATE_CATEGORIES,
   setCatigories,
+  getCategories
 } from './actions';
 
 function* fetchCategories() {
-  const categories = yield getList();
-  yield put(setCatigories(categories));
+  try {
+    const categories = yield getList();
+    yield put(setCatigories(categories));
+  } catch (err) {
+    console.log(err);
+  }
+
 }
 
-function* putCategory({ data }) {
-  const category = yield updateCat(data);
-  yield put(updateCategory(category));
-  yield put(getList());
+function* putCategory({data}) {
+  try {
+    const category = yield updateCat(data);
+    //yield put(updateCategory(category));
+    yield put(getCategories());
+  } catch (err) {
+
+  }
 }
 
 export function* watchCategories() {

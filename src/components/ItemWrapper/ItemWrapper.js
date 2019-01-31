@@ -1,18 +1,40 @@
 import './itemwrapper.scss';
 import CustomeInput from '../../components/customeInput';
+// import Modal from '../../components/modal';
 
 class ItemWrapper extends Component {
-  render () {
-    const { leftItems, rightItems } = this.props;
+  state = {
+    itemToDelete: ''
+  };
+
+  onDelete = (id) => {
+    this.setState({itemToDelete: id})
+  };
+
+  onClose = () => {
+    this.setState({itemToDelete: ''})
+  };
+
+  onOk = () => {
+    this.props.removeItem(this.state.itemToDelete);
+  };
+
+  publishItem = (id) => {
+    this.props.publishItem(id);
+  };
+
+  render() {
+    const {leftItems, rightItems} = this.props;
 
     return (
-      <div className="control-items">
+      <div className="item-wrapper">
         <ul>
           {
-            leftItems.map(({ title, id }) => {
+            leftItems.map(({title, id}) => {
               return <li key={id}>
-                {title}
-                <CustomeInput value={title} name={title} onLoose={title => this.props.onChangeLeftItem(title, id)}/>
+                <CustomeInput
+                  value={title} name={title} changeVal={title => this.props.onChangeLeftItem(title, id)}/>
+                  <span onClick={() => this.onDelete(id)}>X</span>
               </li>;
             })
           }
@@ -20,11 +42,21 @@ class ItemWrapper extends Component {
 
         <ul>
           {
-            rightItems.map(({ title, id }) => {
-              return <li key={id}>{title}</li>;
+            rightItems.map(({title, id}) => {
+              return <li key={id}>
+                {title}
+                <button onClick={() => this.publishItem(id)}>publish</button>
+              </li>;
+
             })
           }
         </ul>
+        {/*<Modal*/}
+          {/*isOpen={Boolean(this.state.itemToDelete)}*/}
+          {/*success={this.onOk}*/}
+          {/*close={this.onClose}*/}
+          {/*text='My modal text'*/}
+        {/*/>*/}
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import {Link, NavLink} from 'react-router-dom'
-import './header.scss';
+// import './header.scss';
 import {logout} from "../../services";
 
 export const Header = ({user = {}, info = {}, onLogout, history}) => {

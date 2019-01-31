@@ -5,6 +5,7 @@ import {
 import initialState from '../initialState';
 
 export const categories = (state = initialState.categories, action) => {
+  console.log(action);
   switch (action.type) {
     case SET_CATEGORIES: {
       return action.data;

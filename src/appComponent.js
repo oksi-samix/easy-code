@@ -11,7 +11,7 @@ import {connect} from 'react-redux';
 import {ToastContainer} from 'react-toastr';
 
 
-class AppComponent extends Component {
+export class AppComponent extends Component {
   componentDidMount() {
     this.props.dispatch(check());
   }

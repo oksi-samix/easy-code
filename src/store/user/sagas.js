@@ -14,13 +14,22 @@ function* check() {
 }
 
 function* loginSaga(action) {
-  const user = yield login(action.data);
-  yield put(setUser(user));
+  let user ;
+  try{
+    user = yield login(action.data);
+    yield put(setUser(user))
+  } catch(error){
+    console.log(error);
+  }
 }
 
 function* logoutSaga() {
-  yield logout();
-  yield put(setUser(null));
+  try{
+    yield logout();
+    yield put(setUser(null));
+  } catch(error){
+    console.log(error);
+  }
 }
 
 export function* watchCheckUser() {
