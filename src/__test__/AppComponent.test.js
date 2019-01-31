@@ -6,7 +6,7 @@ import {getInfo, cleanInfo} from '../store/category';
 describe('<AppComponent />', () => {
   it('should render', () => {
     const wrapper = shallow(<AppComponent dispatch={_ => _} />);
-    expect(wrapper.find("Header, Main").length).toBe(2);
+    expect(wrapper.find("Header").length).toBe(1);
   });
 
   it('should render', () => {
