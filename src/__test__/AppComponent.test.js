@@ -1,9 +1,10 @@
-import {shallow, mount} from 'enzyme';
+import {shallow} from 'enzyme';
 import { AppComponent } from '../appComponent';
 import { Header } from '.././components/header';
 import {getInfo, cleanInfo} from '../store/category';
 import {check, logout} from '../store/user';
 import {cleanError} from '../store/status';
+import {ToastContainer} from 'react-toastr';
 
 describe('<AppComponent />', () => {
   it('should render', () => {
@@ -43,16 +44,15 @@ describe('<AppComponent />', () => {
     expect(fakeDispatch).toHaveBeenCalledWith(cleanInfo());
   });
   
-  // it('should cleanError when error appear ', () => {
-  //   const fakeDispatch = jest.fn();
-  //   const error = '';
-  //   const wrapper = shallow(<AppComponent dispatch={fakeDispatch} error={error}/>);
-  //   const instance = wrapper.instance();
-  //   console.log(instance);
-  //   instance.container = { error : 'Error title' } ;
-  //   wrapper.setProps({error : 'error'});
-  //   expect(fakeDispatch).toHaveBeenCalledWith(cleanError());
-  // });
+  it('should cleanError when error appear ', () => {
+    const fakeDispatch = jest.fn();
+    const error = '';
+    const wrapper = shallow(<AppComponent dispatch={fakeDispatch} error={error}/>);
+    const instance = wrapper.instance();
+    instance.container = {error : jest.fn()};
+    wrapper.setProps({error : 'error'});
+    expect(fakeDispatch).toHaveBeenCalledWith(cleanError());
+  });
   
   it('should onLogOut  call logout', () => {
     const fakeDispatch = jest.fn();
