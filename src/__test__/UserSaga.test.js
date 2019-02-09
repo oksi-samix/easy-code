@@ -3,14 +3,28 @@ import {runSaga} from 'redux-saga';
 import {checkSaga, logoutSaga, loginSaga} from '../store/user/sagas';
 import {setUser} from '../store/user/actions';
 
-const user = {name: 'Jane'};
+const user = {
+  age: 19,
+  email: "admin@a.com",
+  firstName: "Jane",
+  id: 0,
+  lastName: "Oksana",
+};
 jest.mock('../services/user', () => ({
-    checkUser: () => {
-      name: 'Jane'
-    },
-    login: () => {
-      name: 'Jane'
-    },
+    login: jest.fn(() => Promise.resolve({
+      age: 19,
+      email: "admin@a.com",
+      firstName: "Jane",
+      id: 0,
+      lastName: "Oksana"
+    })),
+    checkUser: jest.fn(() => Promise.resolve({
+      age: 19,
+      email: "admin@a.com",
+      firstName: "Jane",
+      id: 0,
+      lastName: "Oksana"
+    })),
     logout: () => null
   })
 );
@@ -20,15 +34,15 @@ describe('userSagas', () => {
   it('should set users to store when check it', () => {
     const it = checkSaga();
     const checkedUser = it.next().value;
-
-    expect(checkedUser).toEqual(user);
+    
+    expect(checkedUser).toEqual(Promise.resolve(user));
     expect(it.next(checkedUser).value).toEqual(put(setUser(checkedUser)));
   });
   
   it('should login', () => {
-    const it = loginSaga({data: user});
+    const it = loginSaga({data: {email: "admin@a.com", password: "admin"}});
     const loginUser = it.next().value;
-    expect(loginUser).toEqual(user);
+    expect(loginUser).toEqual(Promise.resolve(user));
     expect(it.next(loginUser).value).toEqual(put(setUser(loginUser)));
   });
   
