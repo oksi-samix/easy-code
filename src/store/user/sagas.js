@@ -3,7 +3,7 @@ import {CHECK_USER, LOGIN_USER, LOGOUT, setUser} from "./actions";
 
 import { checkUser, login, logout } from '../../services'
 
-function* check() {
+export function* checkSaga() {
   let user ;
   try{
     user = yield checkUser();
@@ -13,7 +13,7 @@ function* check() {
   }
 }
 
-function* loginSaga(action) {
+export function* loginSaga(action) {
   let user ;
   try{
     user = yield login(action.data);
@@ -23,7 +23,7 @@ function* loginSaga(action) {
   }
 }
 
-function* logoutSaga() {
+export function* logoutSaga() {
   try{
     yield logout();
     yield put(setUser(null));
@@ -34,7 +34,7 @@ function* logoutSaga() {
 
 export function* watchCheckUser() {
   yield all([
-    takeEvery(CHECK_USER,check ),
+    takeEvery(CHECK_USER,checkSaga ),
     takeEvery(LOGIN_USER,loginSaga),
     takeEvery(LOGOUT, logoutSaga)
   ])
